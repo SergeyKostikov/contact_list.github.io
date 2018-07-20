@@ -3,57 +3,41 @@ class PhoneApp{
     this.database = [];
   }
 
-  addUser (options) {
-    let user = {};
-    user.id = this.database.length + 1;
-    user.avatar = options.avatar || "avatar-2"
-  
-    if (options.name) {
-      user.name = options.name;
+  addUser (user) {
+    let currentUser = {};
+    currentUser.id = this.database.length + 1;
+    currentUser.avatar = user.avatar || "avatar-2"
+    if (user.name) {
+      currentUser.name = user.name;
     }
-    if (options.phone) {
-      if (!this.checkPhoneNumber(options.phone)) {
-        user.phone = options.phone;
+    if (user.phone) {
+      if (!this.checkPhoneNumber(user.phone)) {
+        currentUser.phone = user.phone;
       } else {
         console.log(
           "не удалось сохранить номер телефона, Телефон должен состоять только из цифр"
         );
       }
     }
-    if (options.homePhone) {
-      if (!this.checkPhoneNumber(options.homePhone)) {
-        user.homePhone = options.homePhone;
+    if (user.homePhone) {
+      if (!this.checkPhoneNumber(user.homePhone)) {
+        currentUser.homePhone = user.homePhone;
       } else {
         console.log(
           "не удалось сохранить номер телефона, Телефон должен состоять только из цифр"
         );
       }
     }
-    this.database.push(user);
+    this.database.push(currentUser);
   };
-  checkPhoneNumber(phone){isNaN(+phone)};
 
-  checkAndFormatPhoneNumber(phone) {
-    if (!isNaN(+phone)) {
-      let phoneCode = phone
-        .split("")
-        .splice(0, 3)
-        .join("");
-      let resultPhone =
-        "(" +
-        phoneCode +
-        ") " +
-        phone.slice(3, 5) +
-        "-" +
-        phone.slice(5, 7) +
-        "-" +
-        phone.slice(7);
-      return resultPhone;
-    }
+  checkPhoneNumber(phone){
+    isNaN(+phone)
   };
+
 
   deleteUser(id) {
-    this.database.forEach((elem, index) => {
+    this.database.filter((elem, index) => {
       if (elem.id == id) {
         this.database.splice(index, 1);
       }
@@ -61,12 +45,11 @@ class PhoneApp{
   };
 
   searchUserByName(name) {
-    return this.database.reduce(function(newElem, elem) {
+    return this.database.filter(function(elem) {
       if (elem.name == name) {
-        newElem.push(elem);
+        return elem;
       }
-      return newElem;
-    }, []);
+    });
   };
 
   editUser(id, options) {
@@ -84,6 +67,7 @@ class PhoneApp{
       }
     });
   };
+
   filterUser(param) {
     return this.database.filter(elem => {
       if (elem[param]) {
@@ -91,15 +75,19 @@ class PhoneApp{
       }
     });
   };
+
   sortUser(param, direction) {
     return this.database.sort((a, b) => {
       if (direction) {
-        if (direction == "big") {
+        //from small value to big value
+        if (direction == "up") {
           return a[param] < b[param];
         }
-        if (direction == "small") {
+        //from big value to small value
+        if (direction == "down") {
           return a[param] > b[param];
         }
+      //default  
       } else {
         return a.id > b.id;
       }
@@ -242,3 +230,4 @@ myPhoneApp.addUser(blabla);
 console.log(app.createUsersList(myPhoneApp))
 console.log(myPhoneApp)
 
+console.log(myPhoneApp.searchUserByName('Anduin'));
