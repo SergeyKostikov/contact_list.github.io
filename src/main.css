@@ -35,7 +35,7 @@ div.app-header, div.app-footer{
     color: #fff;
     background: #3367d6;
     padding: 15px 10px;
-    border: 1px solid #858585;
+    border: 1px solid #3367d6;
 }
 .app-contact-buttons{
     text-align: center;
@@ -53,7 +53,7 @@ div.app-header, div.app-footer{
 .app-contact-avatar img{
     width: 50px;
 }
-.app-contact-list{
+.app-content{
     height:700px;
     overflow:auto;
     /**/
@@ -71,6 +71,7 @@ tr:hover td{
     border-bottom: 2px solid #858585;
 }
 tr:hover{
+    cursor: pointer;
     background-color: #f1f1f1;
     
 }

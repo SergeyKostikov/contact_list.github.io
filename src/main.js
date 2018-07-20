@@ -191,7 +191,7 @@ class App{
     avatarImg.setAttribute("src","img/"+user.avatar+".png")
 
     let editA = this.newElem("a");
-    editA.setAttribute("href","#");
+    editA.setAttribute("href","contact.html?do=edit");
     editA.className = "icon-link";
     
     let editIconAwesome = this.newElem("i");
@@ -209,6 +209,7 @@ class App{
     tr.appendChild(avatarTD);
     tr.appendChild(infoTD)
     tr.appendChild(buttonTD)
+    tr.setAttribute("onclick", "window.location.href = 'contact.html'");
 
     return tr
   }
