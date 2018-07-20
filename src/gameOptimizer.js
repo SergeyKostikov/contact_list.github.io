@@ -61,6 +61,7 @@ function compare(army,enemy){
         }else{
             whomStrike = 'Nobody'
         }
+        
         resultObj.whoStrikeHeroes = armyElem.name
         resultObj.whomStrikeHeroes = whomStrike
         resulArr.push(resultObj)
