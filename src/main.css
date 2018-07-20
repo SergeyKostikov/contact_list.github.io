@@ -67,7 +67,8 @@ tr td{
 }
 tr:hover td{
     height: 60px;
-    border: 2px solid #858585;
+    border-top: 1px solid #858585;
+    border-bottom: 2px solid #858585;
 }
 tr:hover{
     background-color: #f1f1f1;
