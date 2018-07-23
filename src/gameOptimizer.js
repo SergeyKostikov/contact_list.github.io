@@ -33,30 +33,24 @@ function compare(army,enemy){
         let resultObj = {}
         let tmpArr = []
 
-
-
         enemy.filter(elem => {
             if(!strikeArmies.includes(elem.name)){
                 tmpArr.push(elem)
             }
         })
-        console.log('tmpArr',tmpArr)
         tmpArr.map(enemyElem => {
-            if(enemyArmyName == '' && enemyArmyHeroPower == 0){
-                enemyArmyName = enemyElem.name;
-                enemyArmyHeroPower = enemy.heroPower;
-            }
             if(armyElem.heroPower > enemyElem.heroPower){
-                if(enemyArmyHeroPower > enemyElem.heroPower){
+                if(enemyArmyHeroPower < enemyElem.heroPower){
                     enemyArmyName = enemyElem.name;
-                    enemyArmyHeroPower = enemy.heroPower;
+                    enemyArmyHeroPower = enemyElem.heroPower;
                 }
             }
             
         })
+        console.log('enemyArmyHeroPower',enemyArmyHeroPower,'enemyArmyName',enemyArmyName)
         let whomStrike =''
         if(armyElem.heroPower > enemyArmyHeroPower){
-            whomStrike = enemyArmyName
+            whomStrike = enemyArmyName=='' ? 'Nobody' : enemyArmyName
             strikeArmies.push(enemyArmyName) 
         }else{
             whomStrike = 'Nobody'
