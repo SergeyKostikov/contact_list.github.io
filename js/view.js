@@ -12,7 +12,7 @@ class View{
                 </div>
             </header>
             <main>
-                <div class="container"></div>
+                <div class="container content-block"></div>
             </main>
             <footer class="footer">
                 <div class="container bottom-radius">

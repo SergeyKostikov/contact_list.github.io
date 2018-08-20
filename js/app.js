@@ -8,7 +8,6 @@ class App{
     
     setState(state){
         this.state = state
-        console.log(this.state)
     }
 }
 

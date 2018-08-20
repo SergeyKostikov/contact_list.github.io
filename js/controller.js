@@ -11,32 +11,37 @@ class Controller{
             contact: document.getElementById("menu_contact"),
             user: document.getElementById("menu_user"),
             addUser: document.getElementById("menu_add_user"),
-        }       
+        }  
+        
+        if(!this.contacts){
+            this.getUsers()
+        }
     } 
 
     addLesteners(){
         Object.keys(this.navigation).forEach((elem) => {           
-            this.navigation[elem].addEventListener("click",function(e){
+            this.navigation[elem].addEventListener("click",(e) => {
                 e.preventDefault()
                 this.state = elem
                 app.setState(this.state)
+
                 switch(elem){
-                    case elem == "contactsList":
-                    this.getUsers()
-                        let contactsList = new Contacts()
-                        contactsList.render()
+                    case "contactsList":                        
+                        this.getUsers()
                         break
-                    case elem == "keypad":
+                    case "keypad":
+                        let keypad = new Keypad()
+                        keypad.render()
+                    break
+                    case "contact":
                     console.log(elem)
                     break
-                    case elem == "contact":
+                    case "user":
                     console.log(elem)
                     break
-                    case elem == "user":
-                    console.log(elem)
-                    break
-                    case elem == "addUser":
-                    console.log(elem)
+                    case "addUser":
+                        let addContact = new AddContact()
+                        addContact.render()
                     break
 
                 }
@@ -45,15 +50,14 @@ class Controller{
     }
     
     getUsers(){
-        console.log(this.baseUrl+this.baseUser)
         fetch(this.baseUrl+this.baseUser)
         .then(function(response){
             return response.json()
         })
         .then(function(res){
             let result = res.users
-            //contactsList.render(result)
-            console.log(result)
+            let contacts = new Contacts()
+            contacts.render(result)
         })
     }
 
