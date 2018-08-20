@@ -1,6 +1,6 @@
 class Controller{
     constructor(model, view){
-        this.baseUrl = "http://easycode-js.herokuapp.com/"
+        this.baseUrl = "https://easycode-js.herokuapp.com/"
         this.baseUser = "seko"
         this.state = "contactsList"
         this.model = model
