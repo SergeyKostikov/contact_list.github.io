@@ -14,20 +14,20 @@ class Controller{
         }  
         
         if(!this.contacts){
-            this.getUsers()
+            this.contacts = new Contacts().getUsers()
         }
     } 
 
-    addLesteners(){
+    bottomNavigationOnClickListener(){
         Object.keys(this.navigation).forEach((elem) => {           
             this.navigation[elem].addEventListener("click",(e) => {
                 e.preventDefault()
                 this.state = elem
                 app.setState(this.state)
-
                 switch(elem){
                     case "contactsList":                        
-                        this.getUsers()
+                        let contacts = new Contacts()
+                        contacts.getUsers()
                         break
                     case "keypad":
                         let keypad = new Keypad()
@@ -48,18 +48,10 @@ class Controller{
             })           
         })
     }
+
+
     
-    getUsers(){
-        fetch(this.baseUrl+this.baseUser)
-        .then(function(response){
-            return response.json()
-        })
-        .then(function(res){
-            let result = res.users
-            let contacts = new Contacts()
-            contacts.render(result)
-        })
-    }
+
 
     getState(){
         return this.state;

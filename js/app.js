@@ -12,7 +12,7 @@ class App{
 }
 
 let app = new App()
-app.controller.addLesteners()
+app.controller.bottomNavigationOnClickListener()
 
 
 
