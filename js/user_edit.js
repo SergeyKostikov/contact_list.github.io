@@ -78,8 +78,4 @@ class UserEdit {
         this.init(res);
       });
   }
-
-  //  renderUsersList(elem){
-  //   this.tableBlock.innerHTML += elem
-  // }
 }

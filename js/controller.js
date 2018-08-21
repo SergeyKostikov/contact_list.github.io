@@ -8,8 +8,6 @@ class Controller {
     this.navigation = {
       contactsList: document.getElementById("menu_contacts_list"),
       keypad: document.getElementById("menu_keypad"),
-      contact: document.getElementById("menu_contact"),
-      user: document.getElementById("menu_user"),
       addUser: document.getElementById("menu_add_user")
     };
 
@@ -32,12 +30,6 @@ class Controller {
           case "keypad":
             let keypad = new Keypad();
             keypad.render();
-            break;
-          case "contact":
-            console.log(elem);
-            break;
-          case "user":
-            console.log(elem);
             break;
           case "addUser":
             let user = new UserEdit("create");

@@ -25,14 +25,7 @@ class View{
                             <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
                             <span class = "tab-text">Keypad</span>
                         </a>
-                        <a href="" class="tab" id="menu_contact">
-                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                            <span class = "tab-text">Edit contact</span>
-                        </a>
-                        <a href="" class="tab" id="menu_user">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                            <span class = "tab-text">User</span>
-                        </a>
+
                         <a href="" class="tab" id="menu_add_user">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             <span class = "tab-text">Add user</span>

@@ -99,8 +99,4 @@ class Contacts {
 			</tr>
 	`;
   }
-
-  //  renderUsersList(elem){
-  //   this.tableBlock.innerHTML += elem
-  // }
 }
