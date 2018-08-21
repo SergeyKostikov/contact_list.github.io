@@ -1,18 +1,17 @@
 class User{
-    constructor(type,id){
+    constructor(id){
         this.baseUrl = "https://easycode-js.herokuapp.com/"
         this.baseUser = "seko"
-          this.baseBlock = document.querySelector(".content-block")
-          if(type=="show"){
-              this.user = this.getUser(id)
-          }
-              
+        this.baseBlock = document.querySelector(".content-block")
+        this.render()
+        this.user = this.getUser(id)
+            
       }
     
-    render(user){	
+    render(){
               this.baseBlock.innerHTML = `
               <img src="images/user-face.png" alt="#" class=" user-img img-circle center-block">
-				<div class="user-name">${user.fullName}</div>
+				<div class="user-name"></div>
 				<div class="options-line">
 					<div class="message">
 						<div class= "options-icon"><span class="icon glyphicon glyphicon-comment" aria-hidden="true"></span></div>
@@ -50,42 +49,22 @@ class User{
           `
     }
 
+    init(user){
+        let nameBlock = document.querySelector(".user-name")
+        nameBlock.innerHTML = user.fullName
+    }
+
     getUser(id){
         fetch(this.baseUrl+this.baseUser+"/users/"+id)
             .then(response => {
                 return response.json()
             })
             .then(res =>{
-                this.render(res)
-                let user = JSON.stringify(res)
+                this.init(res)
             })
     }
     
-    createUsersListView(users){
-          return users.reduce((newElem, elem) => {
-              return newElem + this.createUserTR(elem)
-          },"")
-      }
-    
-    createUserTR(user){	
-          return `
-              <tr>
-                  <td class="${user._id}">${user.fullName.split(' ')[0]}</td>
-                  <td class="${user._id}">${user.fullName.split(' ')[1]}</td>
-                  <td class="${user._id}">${user.email}</td>
-              </tr>
-      `
-      }
-  
-  
-      
-  
-      
-      
-      
-    //  renderUsersList(elem){	
-    //   this.tableBlock.innerHTML += elem
-      // }
+
   }
   
   

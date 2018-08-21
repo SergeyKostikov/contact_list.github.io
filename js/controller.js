@@ -40,19 +40,14 @@ class Controller{
                     console.log(elem)
                     break
                     case "addUser":
-                        let addContact = new AddContact()
-                        addContact.render()
+                        let user = new UserEdit("create")
                     break
 
                 }
             })           
         })
     }
-
-
     
-
-
     getState(){
         return this.state;
     }  
