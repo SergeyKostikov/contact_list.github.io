@@ -329,3 +329,6 @@ h3 {
   margin: 0 auto;
   font-weight: bold;
 }
+input.err{
+  border: 1px solid red;
+}

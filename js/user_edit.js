@@ -6,20 +6,20 @@ class UserEdit {
     this.render();
     this.button = document.querySelector(".saveUser");
 
-    this.button.addEventListener("click", (e) => {
-        let nameBlock = document.querySelector("input[name=userName]");
-        let lastNameBlock = document.querySelector("input[name=userLastName]");
-        let emailBlock = document.querySelector("input[name=email]");
-        let phoneBlock = document.querySelector("input[name=phone]");
+    this.button.addEventListener("click", e => {
+      let nameBlock = document.querySelector("input[name=userName]");
+      let lastNameBlock = document.querySelector("input[name=userLastName]");
+      let emailBlock = document.querySelector("input[name=email]");
+      let phoneBlock = document.querySelector("input[name=phone]");
 
-        let user = {
-            fullName: nameBlock.value+" "+lastNameBlock.value,
-            phone: emailBlock.value,
-            email: emailBlock.value
-        }
+      let user = {
+        fullName: nameBlock.value + " " + lastNameBlock.value,
+        phone: phoneBlock.value,
+        email: emailBlock.value
+      };
 
-        this.saveUser(user)
-    })
+      this.saveUser(user);
+    });
     if (type == "edit") {
       this.user = this.getUser(id);
     }
@@ -39,19 +39,22 @@ class UserEdit {
           `;
   }
 
-  saveUser(user){
-      console.log(JSON.stringify(user))
-      fetch(this.baseUrl+this.baseUser+"/users",{
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(user)
+  saveUser(user) {
+    fetch(this.baseUrl + this.baseUser + "/users", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      method: "POST",
+      body: JSON.stringify(user)
     })
-      .then((response) => {
-          console.log(response)
+      .then(response => {
+        return response.json();
       })
+      .then(res => {
+        let result = res._id;
+        let user = new User(result);
+      });
   }
 
   init(user) {
@@ -59,9 +62,10 @@ class UserEdit {
     let lastNameBlock = document.querySelector("input[name=userLastName]");
     let emailBlock = document.querySelector("input[name=email]");
     let phoneBlock = document.querySelector("input[name=phone]");
+
     nameBlock.value = user.fullName.split(" ")[0];
     lastNameBlock.value = user.fullName.split(" ")[1];
-    emailBlock.value = user.email
+    emailBlock.value = user.email;
     phoneBlock.value = user.email;
   }
 

@@ -1,15 +1,14 @@
-class User{
-    constructor(id){
-        this.baseUrl = "https://easycode-js.herokuapp.com/"
-        this.baseUser = "seko"
-        this.baseBlock = document.querySelector(".content-block")
-        this.render()
-        this.user = this.getUser(id)
-            
-      }
-    
-    render(){
-              this.baseBlock.innerHTML = `
+class User {
+  constructor(id) {
+    this.baseUrl = "https://easycode-js.herokuapp.com/";
+    this.baseUser = "seko";
+    this.baseBlock = document.querySelector(".content-block");
+    this.render();
+    this.user = this.getUser(id);
+  }
+
+  render() {
+    this.baseBlock.innerHTML = `
               <img src="images/user-face.png" alt="#" class=" user-img img-circle center-block">
 				<div class="user-name"></div>
 				<div class="options-line">
@@ -34,10 +33,6 @@ class User{
 					<h3>mobile</h3>
 					<div> +38 (093) 989 89 89</div>
 				</div>
-				<div class="tel-number">
-					<h3>home</h3>
-					<div> +38 (093) 989 89 89</div>
-				</div>
 				<div class="options-table">
 					<div class ="options-item"><a href="#">Notes</a></div>
 					<div class ="options-item"><a href="#">Send message</a></div>
@@ -46,25 +41,23 @@ class User{
 					<div class ="options-item"><a href="#">Share my location</a></div>
 					<div class ="options-item"><a href="#">Block this caller</a></div>
 				</div>
-          `
-    }
-
-    init(user){
-        let nameBlock = document.querySelector(".user-name")
-        nameBlock.innerHTML = user.fullName
-    }
-
-    getUser(id){
-        fetch(this.baseUrl+this.baseUser+"/users/"+id)
-            .then(response => {
-                return response.json()
-            })
-            .then(res =>{
-                this.init(res)
-            })
-    }
-    
-
+          `;
   }
-  
-  
+
+  init(user) {
+    let nameBlock = document.querySelector(".user-name");
+    let phoneBlock = document.querySelector(".tel-number");
+    nameBlock.innerHTML = user.fullName;
+    phoneBlock.innerHTML = user.phone;
+  }
+
+  getUser(id) {
+    fetch(this.baseUrl + this.baseUser + "/users/" + id)
+      .then(response => {
+        return response.json();
+      })
+      .then(res => {
+        this.init(res);
+      });
+  }
+}
