@@ -49,8 +49,11 @@ class Contacts {
 	
 	searchOnChangeListener(){
 		let searchBlock = document.getElementById("search")
-		searchBlock.addEventListener("change", (e) => {
-			this.render(this.search(searchBlock.value))
+		let tBody = document.querySelector("tbody")
+		
+		searchBlock.addEventListener("keyup", (e) => {
+			tBody.innerHTML = this.createUsersListView(this.search(searchBlock.value))
+			//this.render(this.search(searchBlock.value))
 		})
 	}
 
@@ -68,20 +71,23 @@ class Contacts {
 	}
 	
 	search(str){
-		return this.users.filter(elem => {
+		if(str!=""){
+			return this.users.filter(elem => {
+				let name = elem.fullName
+				let phone = elem.phone
+				let email = elem.email
 
-			let name = elem.fullName
-			let phone = elem.phone
-			let email = elem.email
-
-			if(name.search(str)!=-1){
-				return elem
-			}else if(phone.search(str)!=-1){
-				return elem
-			}else if(email.search(str)!=-1){
-				return elem
-			}
-		})
+				if(name.search(str)!=-1){
+					return elem
+				}else if(phone.search(str)!=-1){
+					return elem
+				}else if(email.search(str)!=-1){
+					return elem
+				}
+			})
+		}else{
+			return this.users
+		}
 	}
 
   createUserTR(user) {
