@@ -2,8 +2,9 @@ class Contacts {
   constructor() {
     this.baseBlock = document.querySelector(".content-block");
     this.baseUrl = "https://easycode-js.herokuapp.com/";
-    this.baseUser = "seko";
-  }
+		this.baseUser = "seko";
+		this.users = []
+	}
 
   render(users) {
     this.baseBlock.innerHTML = `
@@ -26,6 +27,8 @@ class Contacts {
 				</tbody>
 			</table>
 		`;
+		this.editContactOnClickListener();
+		this.searchOnChangeListener()
   }
 
   createUsersListView(users) {
@@ -42,7 +45,14 @@ class Contacts {
         let user = new User(user_id);
       }
     });
-  }
+	}
+	
+	searchOnChangeListener(){
+		let searchBlock = document.getElementById("search")
+		searchBlock.addEventListener("change", (e) => {
+			this.render(this.search(searchBlock.value))
+		})
+	}
 
   getUsers() {
     fetch(this.baseUrl + this.baseUser)
@@ -50,11 +60,29 @@ class Contacts {
         return response.json();
       })
       .then(res => {
-        let result = res.users;
+				let result = res.users;
+				this.users = result;
         this.render(result);
-        this.editContactOnClickListener();
+
       });
-  }
+	}
+	
+	search(str){
+		return this.users.filter(elem => {
+
+			let name = elem.fullName
+			let phone = elem.phone
+			let email = elem.email
+
+			if(name.search(str)!=-1){
+				return elem
+			}else if(phone.search(str)!=-1){
+				return elem
+			}else if(email.search(str)!=-1){
+				return elem
+			}
+		})
+	}
 
   createUserTR(user) {
     return `
