@@ -76,12 +76,13 @@ class Contacts {
 				let name = elem.fullName
 				let phone = elem.phone
 				let email = elem.email
+				let regexStr = new RegExp(str,"gmi")
 
-				if(name.search(str)!=-1){
+				if(name.search(regexStr)!=-1){
 					return elem
-				}else if(phone.search(str)!=-1){
+				}else if(phone.search(regexStr)!=-1){
 					return elem
-				}else if(email.search(str)!=-1){
+				}else if(email.search(regexStr)!=-1){
 					return elem
 				}
 			})
