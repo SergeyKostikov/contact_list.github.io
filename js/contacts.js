@@ -42,7 +42,7 @@ class Contacts {
     tableBlock.addEventListener("click", function(e) {
       let user_id = e.target.className;
       if (user_id) {
-        let user = new User(user_id);
+        new User(user_id);
       }
     });
 	}

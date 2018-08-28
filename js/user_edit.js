@@ -18,7 +18,11 @@ class UserEdit {
         email: emailBlock.value
       };
 
-      this.saveUser(user);
+      if (id) {
+        this.updateUser(id, user);
+      } else {
+        this.saveUser(user);
+      }
     });
     if (type == "edit") {
       this.user = this.getUser(id);
@@ -67,6 +71,24 @@ class UserEdit {
     lastNameBlock.value = user.fullName.split(" ")[1];
     emailBlock.value = user.email;
     phoneBlock.value = user.email;
+  }
+
+  updateUser(id, user) {
+    fetch(this.baseUrl + this.baseUser + "/users/" + id, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      method: "PATCH",
+      body: JSON.stringify(user)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(res => {
+        let result = res._id;
+        let user = new User(result);
+      });
   }
 
   getUser(id) {

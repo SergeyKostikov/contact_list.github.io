@@ -1,14 +1,16 @@
 class User {
   constructor(id) {
+    this.user_id = id;
     this.baseUrl = "https://easycode-js.herokuapp.com/";
     this.baseUser = "seko";
     this.baseBlock = document.querySelector(".content-block");
     this.render();
-    this.user = this.getUser(id);
+    this.user = this.getUser(this.user_id);
   }
 
   render() {
     this.baseBlock.innerHTML = `
+		<button class="editUser">Edit User</button>
               <img src="images/user-face.png" alt="#" class=" user-img img-circle center-block">
 				<div class="user-name"></div>
 				<div class="options-line">
@@ -41,7 +43,15 @@ class User {
 					<div class ="options-item"><a href="#">Share my location</a></div>
 					<div class ="options-item"><a href="#">Block this caller</a></div>
 				</div>
-          `;
+					`;
+    this.addEditButtonClickListener();
+  }
+
+  addEditButtonClickListener() {
+    let editButton = document.querySelector(".editUser");
+    editButton.addEventListener("click", e => {
+      new UserEdit("edit", this.user_id);
+    });
   }
 
   init(user) {
